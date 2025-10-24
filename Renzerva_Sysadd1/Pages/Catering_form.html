@@ -1,0 +1,2023 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+    <meta charset="UTF-8"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+    <title>Tito Renz Catering Contract Form</title> 
+
+    <style> 
+
+        * { 
+
+            margin: 0; 
+
+            padding: 0; 
+
+            box-sizing: border-box; 
+
+        } 
+
+ 
+
+        body { 
+
+            font-family: 'Arial', sans-serif; 
+
+            line-height: 1.6; 
+
+            color: #333; 
+
+            background-color: #f8f8f8; 
+
+        } 
+
+ 
+
+        .container { 
+
+            max-width: 800px; 
+
+            margin: 20px auto; 
+
+            background: white; 
+
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+
+            border-radius: 10px; 
+
+            overflow: hidden; 
+
+        } 
+
+ 
+
+        .header { 
+
+            background: linear-gradient(135deg, #4a7c59, #5d8b6a); 
+
+            color: white; 
+
+            padding: 30px; 
+
+            text-align: center; 
+
+            position: relative; 
+
+        } 
+
+ 
+
+        .header::before { 
+
+            content: ''; 
+
+            position: absolute; 
+
+            top: 0; 
+
+            left: 0; 
+
+            right: 0; 
+
+            bottom: 0; 
+
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="leaves" patternUnits="userSpaceOnUse" width="20" height="20"><path d="M10,2 Q15,8 10,14 Q5,8 10,2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23leaves)"/></svg>'); 
+
+            opacity: 0.3; 
+
+        } 
+
+ 
+
+        .logo { 
+
+            font-size: 28px; 
+
+            font-weight: bold; 
+
+            margin-bottom: 10px; 
+
+            position: relative; 
+
+            z-index: 1; 
+
+        } 
+
+ 
+
+        .subtitle { 
+
+            font-size: 16px; 
+
+            opacity: 0.9; 
+
+            position: relative; 
+
+            z-index: 1; 
+
+        } 
+
+ 
+
+        .form-container { 
+
+            padding: 40px; 
+
+        } 
+
+ 
+
+        .section { 
+
+            margin-bottom: 30px; 
+
+            border-bottom: 2px solid #e0e0e0; 
+
+            padding-bottom: 25px; 
+
+        } 
+
+ 
+
+        .section:last-child { 
+
+            border-bottom: none; 
+
+            margin-bottom: 0; 
+
+        } 
+
+ 
+
+        .section-title { 
+
+            font-size: 20px; 
+
+            color: #4a7c59; 
+
+            margin-bottom: 20px; 
+
+            font-weight: bold; 
+
+            display: flex; 
+
+            align-items: center; 
+
+        } 
+
+ 
+
+        .section-title::before { 
+
+            content: ''; 
+
+            width: 4px; 
+
+            height: 20px; 
+
+            background: #4a7c59; 
+
+            margin-right: 10px; 
+
+        } 
+
+ 
+
+        .form-group { 
+
+            margin-bottom: 20px; 
+
+        } 
+
+ 
+
+        .form-row { 
+
+            display: flex; 
+
+            gap: 20px; 
+
+            margin-bottom: 20px; 
+
+        } 
+
+ 
+
+        .form-row .form-group { 
+
+            flex: 1; 
+
+            margin-bottom: 0; 
+
+        } 
+
+ 
+
+        label { 
+
+            display: block; 
+
+            margin-bottom: 8px; 
+
+            font-weight: bold; 
+
+            color: #555; 
+
+        } 
+
+ 
+
+        input, select, textarea { 
+
+            width: 100%; 
+
+            padding: 12px; 
+
+            border: 2px solid #ddd; 
+
+            border-radius: 8px; 
+
+            font-size: 14px; 
+
+            transition: border-color 0.3s ease; 
+
+        } 
+
+ 
+
+        input:focus, select:focus, textarea:focus { 
+
+            outline: none; 
+
+            border-color: #4a7c59; 
+
+            box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1); 
+
+        } 
+
+ 
+
+        textarea { 
+
+            resize: vertical; 
+
+            min-height: 100px; 
+
+        } 
+
+ 
+
+        .checkbox-group { 
+
+            display: grid; 
+
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+
+            gap: 10px; 
+
+            margin-top: 10px; 
+
+        } 
+
+ 
+
+        .checkbox-item { 
+
+            display: flex; 
+
+            align-items: center; 
+
+            padding: 8px; 
+
+            background: #f9f9f9; 
+
+            border-radius: 5px; 
+
+        } 
+
+ 
+
+        .checkbox-item input[type="checkbox"] { 
+
+            width: auto; 
+
+            margin-right: 8px; 
+
+        } 
+
+ 
+
+        .package-selector { 
+
+            display: grid; 
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+
+            gap: 15px; 
+
+            margin-top: 15px; 
+
+        } 
+
+ 
+
+        .package-card { 
+
+            border: 2px solid #ddd; 
+
+            border-radius: 10px; 
+
+            padding: 20px; 
+
+            text-align: center; 
+
+            cursor: pointer; 
+
+            transition: all 0.3s ease; 
+
+        } 
+
+ 
+
+        .package-card:hover { 
+
+            border-color: #4a7c59; 
+
+            transform: translateY(-2px); 
+
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.2); 
+
+        } 
+
+ 
+
+        .package-card input[type="radio"] { 
+
+            width: auto; 
+
+            margin-bottom: 10px; 
+
+        } 
+
+ 
+
+        .package-price { 
+
+            font-size: 24px; 
+
+            font-weight: bold; 
+
+            color: #4a7c59; 
+
+            margin-bottom: 10px; 
+
+        } 
+
+ 
+
+        .package-includes { 
+
+            font-size: 12px; 
+
+            color: #666; 
+
+            font-style: italic; 
+
+        } 
+
+ 
+
+        .calculation-box { 
+
+            background: #f0f8f2; 
+
+            border: 2px solid #4a7c59; 
+
+            border-radius: 10px; 
+
+            padding: 20px; 
+
+            margin-top: 20px; 
+
+        } 
+
+ 
+
+        .calc-row { 
+
+            display: flex; 
+
+            justify-content: space-between; 
+
+            margin-bottom: 10px; 
+
+            padding: 5px 0; 
+
+        } 
+
+ 
+
+        .calc-total { 
+
+            border-top: 2px solid #4a7c59; 
+
+            padding-top: 10px; 
+
+            font-size: 18px; 
+
+            font-weight: bold; 
+
+            color: #4a7c59; 
+
+        } 
+
+ 
+
+        .terms-box { 
+
+            background: #fff8dc; 
+
+            border: 1px solid #ddd; 
+
+            border-radius: 8px; 
+
+            padding: 20px; 
+
+            margin: 20px 0; 
+
+            font-size: 13px; 
+
+            line-height: 1.5; 
+
+        } 
+
+ 
+
+        .submit-section { 
+
+            text-align: center; 
+
+            padding-top: 30px; 
+
+        } 
+
+ 
+
+        .submit-btn { 
+
+            background: linear-gradient(135deg, #4a7c59, #5d8b6a); 
+
+            color: white; 
+
+            padding: 15px 40px; 
+
+            border: none; 
+
+            border-radius: 25px; 
+
+            font-size: 18px; 
+
+            font-weight: bold; 
+
+            cursor: pointer; 
+
+            transition: all 0.3s ease; 
+
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.3); 
+
+        } 
+
+ 
+
+        .submit-btn:hover { 
+
+            transform: translateY(-2px); 
+
+            box-shadow: 0 6px 16px rgba(74, 124, 89, 0.4); 
+
+        } 
+
+ 
+
+        .required { 
+
+            color: #e74c3c; 
+
+        } 
+
+ 
+
+        @media (max-width: 768px) { 
+
+            .container { 
+
+                margin: 10px; 
+
+            } 
+
+             
+
+            .form-container { 
+
+                padding: 20px; 
+
+            } 
+
+             
+
+            .form-row { 
+
+                flex-direction: column; 
+
+                gap: 0; 
+
+            } 
+
+             
+
+            .package-selector { 
+
+                grid-template-columns: 1fr; 
+
+            } 
+
+        } 
+
+    </style> 
+
+</head> 
+
+<body> 
+
+    <div class="container"> 
+
+        <div class="header"> 
+
+            <div class="logo">🏠 Tito Renz</div> 
+
+            <div class="subtitle">RESTAURANT & CATERING SERVICES</div> 
+
+        </div> 
+
+ 
+
+        <div class="form-container"> 
+
+            <form id="cateringForm"> 
+
+                <!-- Client Information --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Client Information</h2> 
+
+                    <div class="form-row"> 
+
+                        <div class="form-group"> 
+
+                            <label for="clientName">Full Name <span class="required">*</span></label> 
+
+                            <input type="text" id="clientName" name="clientName" required> 
+
+                        </div> 
+
+                        <div class="form-group"> 
+
+                            <label for="clientPhone">Phone Number <span class="required">*</span></label> 
+
+                            <input type="tel" id="clientPhone" name="clientPhone" required> 
+
+                        </div> 
+
+                    </div> 
+
+                    <div class="form-row"> 
+
+                        <div class="form-group"> 
+
+                            <label for="clientEmail">Email Address <span class="required">*</span></label> 
+
+                            <input type="email" id="clientEmail" name="clientEmail" required> 
+
+                        </div> 
+
+                        <div class="form-group"> 
+
+                            <label for="clientAddress">Complete Address</label> 
+
+                            <input type="text" id="clientAddress" name="clientAddress"> 
+
+                        </div> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <!-- Event Details --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Event Details</h2> 
+
+                    <div class="form-row"> 
+
+                        <div class="form-group"> 
+
+                            <label for="eventType">Event Type <span class="required">*</span></label> 
+
+                            <select id="eventType" name="eventType" required> 
+
+                                <option value="">Select Event Type</option> 
+
+                                <option value="birthday">Birthday</option> 
+
+                                <option value="wedding">Wedding</option> 
+
+                                <option value="meeting">Meeting/Conference</option> 
+
+                                <option value="other">Other Occasions</option> 
+
+                            </select> 
+
+                        </div> 
+
+                        <div class="form-group"> 
+
+                            <label for="guestCount">Number of Guests <span class="required">*</span></label> 
+
+                            <input type="number" id="guestCount" name="guestCount" min="1" required onchange="calculateTotal()"> 
+
+                        </div> 
+
+                    </div> 
+
+                    <div class="form-row"> 
+
+                        <div class="form-group"> 
+
+                            <label for="eventDate">Event Date <span class="required">*</span></label> 
+
+                            <input type="date" id="eventDate" name="eventDate" required> 
+
+                        </div> 
+
+                        <div class="form-group"> 
+
+                            <label for="eventTime">Event Time <span class="required">*</span></label> 
+
+                            <input type="time" id="eventTime" name="eventTime" required> 
+
+                        </div> 
+
+                    </div> 
+
+                    <div class="form-group"> 
+
+                        <label for="venue">Venue/Location <span class="required">*</span></label> 
+
+                        <input type="text" id="venue" name="venue" placeholder="Full address of event location" required> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <!-- Package Selection --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Catering Package</h2> 
+
+                    <div class="package-selector"> 
+
+                        <div class="package-card"> 
+
+                            <input type="radio" id="package350" name="package" value="350" onchange="calculateTotal()"> 
+
+                            <label for="package350"> 
+
+                                <div class="package-price">₱350 PER HEAD</div> 
+
+                                <div class="package-includes">Rice, Pork, Chicken, Fish, Veggies, Pasta, Dessert, Drinks</div> 
+
+                            </label> 
+
+                        </div> 
+
+                        <div class="package-card"> 
+
+                            <input type="radio" id="package450" name="package" value="450" onchange="calculateTotal()"> 
+
+                            <label for="package450"> 
+
+                                <div class="package-price">₱450 PER HEAD</div> 
+
+                                <div class="package-includes">Rice, Beef, Chicken, Fish, Veggies, Pasta, Dessert, Drinks</div> 
+
+                            </label> 
+
+                        </div> 
+
+                        <div class="package-card"> 
+
+                            <input type="radio" id="package550" name="package" value="550" onchange="calculateTotal()"> 
+
+                            <label for="package550"> 
+
+                                <div class="package-price">₱550 PER HEAD</div> 
+
+                                <div class="package-includes">Rice, Beef, Pork, Chicken, Fish, Veggies, Pasta, Dessert, Drinks</div> 
+
+                            </label> 
+
+                        </div> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <!-- Menu Customization --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Menu Preferences</h2> 
+
+                    <div class="form-group"> 
+
+                        <label>Special Dietary Requirements or Allergies</label> 
+
+                        <textarea name="dietaryRequirements" placeholder="Please specify any food allergies, dietary restrictions, or special requests..."></textarea> 
+
+                    </div> 
+
+                    <div class="form-group"> 
+
+                        <label>Preferred Menu Items (if any specific requests)</label> 
+
+                        <textarea name="menuPreferences" placeholder="Let us know if you have specific dish preferences from our menu..."></textarea> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <!-- Add-ons and Inclusions --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Additional Services</h2> 
+
+                    <div class="checkbox-group"> 
+
+                        <div class="checkbox-item"> 
+
+                            <input type="checkbox" id="soundSystem" name="addons" value="soundSystem"> 
+
+                            <label for="soundSystem">Sound System (₱6,000)</label> 
+
+                        </div> 
+
+                        <div class="checkbox-item"> 
+
+                            <input type="checkbox" id="photoBooth" name="addons" value="photoBooth"> 
+
+                            <label for="photoBooth">Photo Booth (₱3,500)</label> 
+
+                        </div> 
+
+                        <div class="checkbox-item"> 
+
+                            <input type="checkbox" id="decorations" name="addons" value="decorations"> 
+
+                            <label for="decorations">Stage Backdrop (₱10,000)</label> 
+
+                        </div> 
+
+                        <div class="checkbox-item"> 
+
+                            <input type="checkbox" id="lechon" name="addons" value="lechon"> 
+
+                            <label for="lechon">Lechon (₱9,500-₱14,500)</label> 
+
+                        </div> 
+
+                    </div> 
+
+                    <div class="form-group"> 
+
+                        <label>Additional Requests or Special Instructions</label> 
+
+                        <textarea name="specialInstructions" placeholder="Any other special requirements, setup instructions, or requests..."></textarea> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <!-- Cost Calculation --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Cost Summary</h2> 
+
+                    <div class="calculation-box"> 
+
+                        <div class="calc-row"> 
+
+                            <span>Number of Guests:</span> 
+
+                            <span id="calcGuests">0</span> 
+
+                        </div> 
+
+                        <div class="calc-row"> 
+
+                            <span>Package Rate:</span> 
+
+                            <span id="calcRate">₱0 per head</span> 
+
+                        </div> 
+
+                        <div class="calc-row"> 
+
+                            <span>Subtotal:</span> 
+
+                            <span id="calcSubtotal">₱0</span> 
+
+                        </div> 
+
+                        <div class="calc-row"> 
+
+                            <span>Add-ons:</span> 
+
+                            <span id="calcAddons">₱0</span> 
+
+                        </div> 
+
+                        <div class="calc-row calc-total"> 
+
+                            <span>TOTAL ESTIMATED COST:</span> 
+
+                            <span id="calcTotal">₱0</span> 
+
+                        </div> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <!-- Terms and Conditions --> 
+
+                <div class="section"> 
+
+                    <h2 class="section-title">Payment Terms & Agreement</h2> 
+
+                    <div class="terms-box"> 
+
+                        <h4>PAYMENT TERMS & CONDITIONS:</h4> 
+
+                        <ul style="margin-left: 20px; margin-top: 10px;"> 
+
+                            <li><strong>₱5,000 to ₱10,000</strong> - Reservation Fee (Less to the total bill)</li> 
+
+                            <li><strong>50% Down Payment</strong> - 2 to 3 weeks before the event</li> 
+
+                            <li><strong>Full Payment</strong> - 1 week or 3 days before the event</li> 
+
+                        </ul> 
+
+                        <p style="margin-top: 15px;"><strong>Important Notes:</strong></p> 
+
+                        <ul style="margin-left: 20px; margin-top: 5px;"> 
+
+                            <li>Any payment made is non-refundable and non-transferable</li> 
+
+                            <li>No full payment before the event, NO SET UP</li> 
+
+                            <li>Clients with No Final Details should be the one week before the event</li> 
+
+                            <li>In case there is breakages and losses of the catering equipment during the event caused by the guest, automatically charge to client or less on the security cash bond</li> 
+
+                        </ul> 
+
+                    </div> 
+
+                    <div class="form-group"> 
+
+                        <div class="checkbox-item"> 
+
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required> 
+
+                            <label for="agreeTerms">I agree to the terms and conditions stated above <span class="required">*</span></label> 
+
+                        </div> 
+
+                    </div> 
+
+                    <div class="form-group"> 
+
+                        <label for="clientSignature">Digital Signature (Full Name) <span class="required">*</span></label> 
+
+                        <input type="text" id="clientSignature" name="clientSignature" placeholder="Type your full name as digital signature" required> 
+
+                    </div> 
+
+                    <div class="form-group"> 
+
+                        <label for="signatureDate">Date <span class="required">*</span></label> 
+
+                        <input type="date" id="signatureDate" name="signatureDate" required> 
+
+                    </div> 
+
+                </div> 
+
+ 
+
+                <div class="submit-section"> 
+
+                    <button type="submit" class="submit-btn">Submit Catering Contract</button> 
+
+                    <p style="margin-top: 15px; color: #666; font-size: 14px;"> 
+
+                        For inquiries, please call or text: <strong>0915-820-8403</strong> 
+
+                    </p> 
+
+                </div> 
+
+            </form> 
+
+        </div> 
+
+    </div> 
+
+ 
+
+    <script> 
+
+        function calculateTotal() { 
+
+            const guests = parseInt(document.getElementById('guestCount').value) || 0; 
+
+            const packageRate = parseInt(document.querySelector('input[name="package"]:checked')?.value) || 0; 
+
+             
+
+            const subtotal = guests * packageRate; 
+
+            let addonsTotal = 0; 
+
+             
+
+            // Calculate add-ons (simplified - you can expand this) 
+
+            const checkedAddons = document.querySelectorAll('input[name="addons"]:checked'); 
+
+            checkedAddons.forEach(addon => { 
+
+                switch(addon.value) { 
+
+                    case 'soundSystem': addonsTotal += 6000; break; 
+
+                    case 'photoBooth': addonsTotal += 3500; break; 
+
+                    case 'decorations': addonsTotal += 10000; break; 
+
+                    case 'lechon': addonsTotal += 9500; break; // Base price 
+
+                } 
+
+            }); 
+
+             
+
+            const total = subtotal + addonsTotal; 
+
+             
+
+            // Update display 
+
+            document.getElementById('calcGuests').textContent = guests; 
+
+            document.getElementById('calcRate').textContent = `₱${packageRate} per head`; 
+
+            document.getElementById('calcSubtotal').textContent = `₱${subtotal.toLocaleString()}`; 
+
+            document.getElementById('calcAddons').textContent = `₱${addonsTotal.toLocaleString()}`; 
+
+            document.getElementById('calcTotal').textContent = `₱${total.toLocaleString()}`; 
+
+        } 
+
+ 
+
+        // Set minimum date to today 
+
+        document.getElementById('eventDate').min = new Date().toISOString().split('T')[0]; 
+
+        document.getElementById('signatureDate').value = new Date().toISOString().split('T')[0]; 
+
+ 
+
+        // Form submission 
+
+        document.getElementById('cateringForm').addEventListener('submit', function(e) { 
+
+            e.preventDefault(); 
+
+            generateContracts(); 
+
+        }); 
+
+ 
+
+        function generateContracts() { 
+
+            // Collect form data 
+
+            const formData = new FormData(document.getElementById('cateringForm')); 
+
+            const data = Object.fromEntries(formData.entries()); 
+
+             
+
+            // Get selected package details 
+
+            const selectedPackage = document.querySelector('input[name="package"]:checked'); 
+
+            if (!selectedPackage) { 
+
+                alert('Please select a catering package.'); 
+
+                return; 
+
+            } 
+
+             
+
+            // Get selected add-ons 
+
+            const selectedAddons = Array.from(document.querySelectorAll('input[name="addons"]:checked')); 
+
+             
+
+            // Generate both contracts 
+
+            generateCustomerContract(data, selectedPackage, selectedAddons); 
+
+            generateAdminContract(data, selectedPackage, selectedAddons); 
+
+             
+
+            // Show success message 
+
+            alert('Contracts generated successfully! Please review and save both documents.'); 
+
+        } 
+
+ 
+
+        function generateCustomerContract(data, selectedPackage, selectedAddons) { 
+
+            const contractNumber = 'TC-' + new Date().getFullYear() + '-' + String(Date.now()).slice(-6); 
+
+            const guests = parseInt(data.guestCount) || 0; 
+
+            const packageRate = parseInt(selectedPackage.value) || 0; 
+
+            const subtotal = guests * packageRate; 
+
+             
+
+            let addonsTotal = 0; 
+
+            let addonsText = ''; 
+
+            selectedAddons.forEach(addon => { 
+
+                switch(addon.value) { 
+
+                    case 'soundSystem':  
+
+                        addonsTotal += 6000;  
+
+                        addonsText += '• Sound System - ₱6,000\n'; 
+
+                        break; 
+
+                    case 'photoBooth':  
+
+                        addonsTotal += 3500;  
+
+                        addonsText += '• Photo Booth - ₱3,500\n'; 
+
+                        break; 
+
+                    case 'decorations':  
+
+                        addonsTotal += 10000;  
+
+                        addonsText += '• Stage Backdrop - ₱10,000\n'; 
+
+                        break; 
+
+                    case 'lechon':  
+
+                        addonsTotal += 9500;  
+
+                        addonsText += '• Lechon - ₱9,500\n'; 
+
+                        break; 
+
+                } 
+
+            }); 
+
+             
+
+            const total = subtotal + addonsTotal; 
+
+            const reservationFee = Math.min(Math.max(5000, total * 0.1), 10000); 
+
+            const downPayment = total * 0.5; 
+
+             
+
+            const customerContract = ` 
+
+<!DOCTYPE html> 
+
+<html> 
+
+<head> 
+
+    <title>Catering Service Contract - Customer Copy</title> 
+
+    <style> 
+
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; } 
+
+        .header { text-align: center; border-bottom: 3px solid #4a7c59; padding-bottom: 20px; margin-bottom: 30px; } 
+
+        .logo { font-size: 24px; font-weight: bold; color: #4a7c59; margin-bottom: 5px; } 
+
+        .subtitle { color: #666; font-size: 14px; } 
+
+        .contract-number { text-align: right; font-weight: bold; margin-bottom: 20px; color: #4a7c59; } 
+
+        .section { margin-bottom: 25px; } 
+
+        .section-title { font-size: 16px; font-weight: bold; color: #4a7c59; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px; } 
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; } 
+
+        .info-item { margin-bottom: 10px; } 
+
+        .info-label { font-weight: bold; color: #555; } 
+
+        .cost-table { width: 100%; border-collapse: collapse; margin: 20px 0; } 
+
+        .cost-table th, .cost-table td { border: 1px solid #ddd; padding: 12px; text-align: left; } 
+
+        .cost-table th { background-color: #4a7c59; color: white; } 
+
+        .cost-table .total-row { background-color: #f0f8f2; font-weight: bold; } 
+
+        .terms { background-color: #fff8dc; padding: 20px; border-radius: 5px; margin: 20px 0; } 
+
+        .signature-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; } 
+
+        .signature-box { text-align: center; } 
+
+        .signature-line { border-bottom: 2px solid #333; margin-bottom: 5px; height: 50px; } 
+
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 100px; color: rgba(74, 124, 89, 0.1); z-index: -1; pointer-events: none; } 
+
+        @media print { .watermark { position: absolute; } } 
+
+    </style> 
+
+</head> 
+
+<body> 
+
+    <div class="watermark">CUSTOMER COPY</div> 
+
+    <div class="header"> 
+
+        <div class="logo">🏠 TITO RENZ RESTAURANT & CATERING SERVICES</div> 
+
+        <div class="subtitle">Professional Catering Solutions</div> 
+
+    </div> 
+
+     
+
+    <div class="contract-number">Contract No: ${contractNumber}</div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">CLIENT INFORMATION</div> 
+
+        <div class="info-grid"> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Name:</span> ${data.clientName || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Phone:</span> ${data.clientPhone || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Email:</span> ${data.clientEmail || 'N/A'}</div> 
+
+            </div> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Address:</span> ${data.clientAddress || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Contract Date:</span> ${data.signatureDate || new Date().toLocaleDateString()}</div> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">EVENT DETAILS</div> 
+
+        <div class="info-grid"> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Event Type:</span> ${data.eventType || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Date:</span> ${data.eventDate || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Time:</span> ${data.eventTime || 'N/A'}</div> 
+
+            </div> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Venue:</span> ${data.venue || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Number of Guests:</span> ${guests}</div> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">SERVICE PACKAGE & PRICING</div> 
+
+        <table class="cost-table"> 
+
+            <tr> 
+
+                <th>Description</th> 
+
+                <th>Quantity</th> 
+
+                <th>Rate</th> 
+
+                <th>Amount</th> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Catering Package (₱${packageRate} per head)<br><small>Includes: ${getPackageInclusions(packageRate)}</small></td> 
+
+                <td>${guests} pax</td> 
+
+                <td>₱${packageRate.toLocaleString()}</td> 
+
+                <td>₱${subtotal.toLocaleString()}</td> 
+
+            </tr> 
+
+            ${selectedAddons.map(addon => { 
+
+                const addonDetails = getAddonDetails(addon.value); 
+
+                return `<tr><td>${addonDetails.name}</td><td>1</td><td>₱${addonDetails.price.toLocaleString()}</td><td>₱${addonDetails.price.toLocaleString()}</td></tr>`; 
+
+            }).join('')} 
+
+            <tr class="total-row"> 
+
+                <td colspan="3"><strong>TOTAL CONTRACT AMOUNT</strong></td> 
+
+                <td><strong>₱${total.toLocaleString()}</strong></td> 
+
+            </tr> 
+
+        </table> 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">PAYMENT SCHEDULE</div> 
+
+        <table class="cost-table"> 
+
+            <tr> 
+
+                <th>Payment Stage</th> 
+
+                <th>Amount</th> 
+
+                <th>Due Date</th> 
+
+                <th>Status</th> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Reservation Fee</td> 
+
+                <td>₱${reservationFee.toLocaleString()}</td> 
+
+                <td>Upon Contract Signing</td> 
+
+                <td>PENDING</td> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>50% Down Payment</td> 
+
+                <td>₱${(downPayment - reservationFee).toLocaleString()}</td> 
+
+                <td>2-3 weeks before event</td> 
+
+                <td>PENDING</td> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Final Payment</td> 
+
+                <td>₱${(total - downPayment).toLocaleString()}</td> 
+
+                <td>1 week before event</td> 
+
+                <td>PENDING</td> 
+
+            </tr> 
+
+        </table> 
+
+    </div> 
+
+     
+
+    <div class="terms"> 
+
+        <div class="section-title">TERMS AND CONDITIONS</div> 
+
+        <ol> 
+
+            <li><strong>Payment Terms:</strong> All payments must be made according to the schedule above. No setup will commence without full payment.</li> 
+
+            <li><strong>Cancellation:</strong> Any payment made is non-refundable and non-transferable.</li> 
+
+            <li><strong>Final Details:</strong> All final event details must be confirmed 1 week before the event date.</li> 
+
+            <li><strong>Equipment Responsibility:</strong> Client is responsible for any breakages or losses of catering equipment during the event.</li> 
+
+            <li><strong>Force Majeure:</strong> Tito Renz is not liable for delays or cancellations due to circumstances beyond our control.</li> 
+
+            <li><strong>Service Guarantee:</strong> We guarantee professional service and quality food as per agreed specifications.</li> 
+
+        </ol> 
+
+    </div> 
+
+     
+
+    ${data.specialInstructions ? ` 
+
+    <div class="section"> 
+
+        <div class="section-title">SPECIAL INSTRUCTIONS</div> 
+
+        <p>${data.specialInstructions}</p> 
+
+    </div> 
+
+    ` : ''} 
+
+     
+
+    <div class="signature-section"> 
+
+        <div class="signature-box"> 
+
+            <div class="signature-line"></div> 
+
+            <div><strong>${data.clientName || 'CLIENT NAME'}</strong></div> 
+
+            <div>Client Signature & Date</div> 
+
+        </div> 
+
+        <div class="signature-box"> 
+
+            <div class="signature-line"></div> 
+
+            <div><strong>TITO RENZ CATERING</strong></div> 
+
+            <div>Authorized Representative</div> 
+
+        </div> 
+
+    </div> 
+
+     
+
+    <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #666;"> 
+
+        For inquiries: 0915-820-8403 | This is your official contract copy - please keep for your records 
+
+    </div> 
+
+</body> 
+
+</html>`; 
+
+ 
+
+            // Open customer contract in new window 
+
+            const customerWindow = window.open('', '_blank'); 
+
+            customerWindow.document.write(customerContract); 
+
+            customerWindow.document.close(); 
+
+        } 
+
+ 
+
+        function generateAdminContract(data, selectedPackage, selectedAddons) { 
+
+            const contractNumber = 'TC-' + new Date().getFullYear() + '-' + String(Date.now()).slice(-6); 
+
+            const guests = parseInt(data.guestCount) || 0; 
+
+            const packageRate = parseInt(selectedPackage.value) || 0; 
+
+            const subtotal = guests * packageRate; 
+
+             
+
+            let addonsTotal = 0; 
+
+            selectedAddons.forEach(addon => { 
+
+                switch(addon.value) { 
+
+                    case 'soundSystem': addonsTotal += 6000; break; 
+
+                    case 'photoBooth': addonsTotal += 3500; break; 
+
+                    case 'decorations': addonsTotal += 10000; break; 
+
+                    case 'lechon': addonsTotal += 9500; break; 
+
+                } 
+
+            }); 
+
+             
+
+            const total = subtotal + addonsTotal; 
+
+            const reservationFee = Math.min(Math.max(5000, total * 0.1), 10000); 
+
+            const downPayment = total * 0.5; 
+
+ 
+
+            const adminContract = ` 
+
+<!DOCTYPE html> 
+
+<html> 
+
+<head> 
+
+    <title>Catering Service Contract - Admin Copy</title> 
+
+    <style> 
+
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; } 
+
+        .header { text-align: center; border-bottom: 3px solid #4a7c59; padding-bottom: 20px; margin-bottom: 30px; } 
+
+        .logo { font-size: 24px; font-weight: bold; color: #4a7c59; margin-bottom: 5px; } 
+
+        .subtitle { color: #666; font-size: 14px; } 
+
+        .contract-number { text-align: right; font-weight: bold; margin-bottom: 20px; color: #4a7c59; } 
+
+        .admin-notes { background-color: #f0f8f2; padding: 15px; border-left: 4px solid #4a7c59; margin: 20px 0; } 
+
+        .section { margin-bottom: 25px; } 
+
+        .section-title { font-size: 16px; font-weight: bold; color: #4a7c59; border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px; } 
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; } 
+
+        .info-item { margin-bottom: 10px; } 
+
+        .info-label { font-weight: bold; color: #555; } 
+
+        .cost-table { width: 100%; border-collapse: collapse; margin: 20px 0; } 
+
+        .cost-table th, .cost-table td { border: 1px solid #ddd; padding: 12px; text-align: left; } 
+
+        .cost-table th { background-color: #4a7c59; color: white; } 
+
+        .cost-table .total-row { background-color: #f0f8f2; font-weight: bold; } 
+
+        .checklist { background-color: #fff8dc; padding: 20px; border-radius: 5px; } 
+
+        .checklist ul { list-style: none; padding: 0; } 
+
+        .checklist li { margin: 10px 0; } 
+
+        .checklist input[type="checkbox"] { margin-right: 10px; } 
+
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-45deg); font-size: 100px; color: rgba(255, 0, 0, 0.1); z-index: -1; pointer-events: none; } 
+
+        .profit-analysis { background-color: #e8f5e8; padding: 15px; border-radius: 5px; margin: 20px 0; } 
+
+        @media print { .watermark { position: absolute; } } 
+
+    </style> 
+
+</head> 
+
+<body> 
+
+    <div class="watermark">ADMIN COPY</div> 
+
+    <div class="header"> 
+
+        <div class="logo">🏠 TITO RENZ RESTAURANT & CATERING SERVICES</div> 
+
+        <div class="subtitle">Internal Operations Copy</div> 
+
+    </div> 
+
+     
+
+    <div class="contract-number">Contract No: ${contractNumber}</div> 
+
+     
+
+    <div class="admin-notes"> 
+
+        <strong>📋 ADMIN CHECKLIST:</strong><br> 
+
+        ☐ Contract signed and filed<br> 
+
+        ☐ Reservation fee received<br> 
+
+        ☐ Event added to calendar<br> 
+
+        ☐ Initial menu planning completed<br> 
+
+        ☐ Client contact confirmed 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">CLIENT INFORMATION & CONTACT</div> 
+
+        <div class="info-grid"> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Name:</span> ${data.clientName || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Phone:</span> <strong>${data.clientPhone || 'N/A'}</strong></div> 
+
+                <div class="info-item"><span class="info-label">Email:</span> ${data.clientEmail || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Address:</span> ${data.clientAddress || 'N/A'}</div> 
+
+            </div> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Contract Date:</span> ${data.signatureDate || new Date().toLocaleDateString()}</div> 
+
+                <div class="info-item"><span class="info-label">Follow-up Date:</span> ${getFollowUpDate(data.eventDate)}</div> 
+
+                <div class="info-item"><span class="info-label">Final Confirmation:</span> ${getFinalConfirmationDate(data.eventDate)}</div> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">EVENT LOGISTICS</div> 
+
+        <div class="info-grid"> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Event Type:</span> ${data.eventType || 'N/A'}</div> 
+
+                <div class="info-item"><span class="info-label">Date:</span> <strong>${data.eventDate || 'N/A'}</strong></div> 
+
+                <div class="info-item"><span class="info-label">Time:</span> <strong>${data.eventTime || 'N/A'}</strong></div> 
+
+                <div class="info-item"><span class="info-label">Setup Time:</span> ${getSetupTime(data.eventTime)}</div> 
+
+            </div> 
+
+            <div> 
+
+                <div class="info-item"><span class="info-label">Venue:</span> <strong>${data.venue || 'N/A'}</strong></div> 
+
+                <div class="info-item"><span class="info-label">Guests:</span> <strong>${guests} pax</strong></div> 
+
+                <div class="info-item"><span class="info-label">Est. Prep Time:</span> ${Math.ceil(guests/50)} hours</div> 
+
+                <div class="info-item"><span class="info-label">Staff Needed:</span> ${Math.ceil(guests/25)} persons</div> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">FINANCIAL BREAKDOWN & PROFIT ANALYSIS</div> 
+
+        <table class="cost-table"> 
+
+            <tr> 
+
+                <th>Item</th> 
+
+                <th>Client Price</th> 
+
+                <th>Est. Cost</th> 
+
+                <th>Profit Margin</th> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Catering Package (${guests} pax @ ₱${packageRate})</td> 
+
+                <td>₱${subtotal.toLocaleString()}</td> 
+
+                <td>₱${Math.round(subtotal * 0.6).toLocaleString()}</td> 
+
+                <td>₱${Math.round(subtotal * 0.4).toLocaleString()}</td> 
+
+            </tr> 
+
+            ${selectedAddons.map(addon => { 
+
+                const addonDetails = getAddonDetails(addon.value); 
+
+                const cost = Math.round(addonDetails.price * 0.3); 
+
+                const profit = addonDetails.price - cost; 
+
+                return `<tr><td>${addonDetails.name}</td><td>₱${addonDetails.price.toLocaleString()}</td><td>₱${cost.toLocaleString()}</td><td>₱${profit.toLocaleString()}</td></tr>`; 
+
+            }).join('')} 
+
+            <tr class="total-row"> 
+
+                <td><strong>TOTALS</strong></td> 
+
+                <td><strong>₱${total.toLocaleString()}</strong></td> 
+
+                <td><strong>₱${Math.round(total * 0.55).toLocaleString()}</strong></td> 
+
+                <td><strong>₱${Math.round(total * 0.45).toLocaleString()}</strong></td> 
+
+            </tr> 
+
+        </table> 
+
+    </div> 
+
+     
+
+    <div class="section"> 
+
+        <div class="section-title">PAYMENT TRACKING</div> 
+
+        <table class="cost-table"> 
+
+            <tr> 
+
+                <th>Payment</th> 
+
+                <th>Amount</th> 
+
+                <th>Due Date</th> 
+
+                <th>Received</th> 
+
+                <th>Notes</th> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Reservation Fee</td> 
+
+                <td>₱${reservationFee.toLocaleString()}</td> 
+
+                <td>Upon Signing</td> 
+
+                <td>☐</td> 
+
+                <td>_________________</td> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Down Payment</td> 
+
+                <td>₱${(downPayment - reservationFee).toLocaleString()}</td> 
+
+                <td>2-3 weeks before</td> 
+
+                <td>☐</td> 
+
+                <td>_________________</td> 
+
+            </tr> 
+
+            <tr> 
+
+                <td>Final Payment</td> 
+
+                <td>₱${(total - downPayment).toLocaleString()}</td> 
+
+                <td>1 week before</td> 
+
+                <td>☐</td> 
+
+                <td>_________________</td> 
+
+            </tr> 
+
+        </table> 
+
+    </div> 
+
+     
+
+    <div class="checklist"> 
+
+        <div class="section-title">OPERATION CHECKLIST</div> 
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;"> 
+
+            <div> 
+
+                <h4>Pre-Event (1 week before):</h4> 
+
+                <ul> 
+
+                    <li>☐ Menu finalized with client</li> 
+
+                    <li>☐ Shopping list prepared</li> 
+
+                    <li>☐ Staff assignments made</li> 
+
+                    <li>☐ Equipment checklist completed</li> 
+
+                    <li>☐ Transportation arranged</li> 
+
+                    <li>☐ Final payment received</li> 
+
+                </ul> 
+
+            </div> 
+
+            <div> 
+
+                <h4>Event Day:</h4> 
+
+                <ul> 
+
+                    <li>☐ Setup completed on time</li> 
+
+                    <li>☐ Food quality checked</li> 
+
+                    <li>☐ Client satisfied with setup</li> 
+
+                    <li>☐ Service executed smoothly</li> 
+
+                    <li>☐ Cleanup completed</li> 
+
+                    <li>☐ Equipment returned intact</li> 
+
+                </ul> 
+
+            </div> 
+
+        </div> 
+
+    </div> 
+
+     
+
+    ${data.specialInstructions || data.dietaryRequirements || data.menuPreferences ? ` 
+
+    <div class="section"> 
+
+        <div class="section-title">CLIENT SPECIAL REQUESTS</div> 
+
+        ${data.dietaryRequirements ? `<p><strong>Dietary Requirements:</strong> ${data.dietaryRequirements}</p>` : ''} 
+
+        ${data.menuPreferences ? `<p><strong>Menu Preferences:</strong> ${data.menuPreferences}</p>` : ''} 
+
+        ${data.specialInstructions ? `<p><strong>Special Instructions:</strong> ${data.specialInstructions}</p>` : ''} 
+
+    </div> 
+
+    ` : ''} 
+
+     
+
+    <div style="text-align: center; margin-top: 40px; font-size: 12px; color: #666;"> 
+
+        CONFIDENTIAL ADMIN COPY - Contract ${contractNumber} | Generated: ${new Date().toLocaleString()} 
+
+    </div> 
+
+</body> 
+
+</html>`; 
+
+ 
+
+            // Open admin contract in new window 
+
+            const adminWindow = window.open('', '_blank'); 
+
+            adminWindow.document.write(adminContract); 
+
+            adminWindow.document.close(); 
+
+        } 
+
+ 
+
+        function getPackageInclusions(rate) { 
+
+            switch(rate) { 
+
+                case 350: return 'Rice, Pork, Chicken, Fish, Veggies, Pasta, Dessert, Drinks'; 
+
+                case 450: return 'Rice, Beef, Chicken, Fish, Veggies, Pasta, Dessert, Drinks'; 
+
+                case 550: return 'Rice, Beef, Pork, Chicken, Fish, Veggies, Pasta, Dessert, Drinks'; 
+
+                default: return 'Package details'; 
+
+            } 
+
+        } 
+
+ 
+
+        function getAddonDetails(addonValue) { 
+
+            const addons = { 
+
+                soundSystem: { name: 'Sound System', price: 6000 }, 
+
+                photoBooth: { name: 'Photo Booth (2hrs)', price: 3500 }, 
+
+                decorations: { name: 'Stage Backdrop', price: 10000 }, 
+
+                lechon: { name: 'Lechon (Medium)', price: 9500 } 
+
+            }; 
+
+            return addons[addonValue] || { name: 'Unknown', price: 0 }; 
+
+        } 
+
+ 
+
+        function getFollowUpDate(eventDate) { 
+
+            if (!eventDate) return 'TBD'; 
+
+            const date = new Date(eventDate); 
+
+            date.setDate(date.getDate() - 14); 
+
+            return date.toLocaleDateString(); 
+
+        } 
+
+ 
+
+        function getFinalConfirmationDate(eventDate) { 
+
+            if (!eventDate) return 'TBD'; 
+
+            const date = new Date(eventDate); 
+
+            date.setDate(date.getDate() - 7); 
+
+            return date.toLocaleDateString(); 
+
+        } 
+
+ 
+
+        function getSetupTime(eventTime) { 
+
+            if (!eventTime) return 'TBD'; 
+
+            const [hours, minutes] = eventTime.split(':'); 
+
+            const setupHour = Math.max(0, parseInt(hours) - 2); 
+
+            return `${setupHour.toString().padStart(2, '0')}:${minutes}`; 
+
+        } 
+
+ 
+
+        // Add event listeners for real-time calculation 
+
+        document.addEventListener('change', function(e) { 
+
+            if (e.target.name === 'addons') { 
+
+                calculateTotal(); 
+
+            } 
+
+        }); 
+
+    </script> 
+
+</body> 
+
+</html> 

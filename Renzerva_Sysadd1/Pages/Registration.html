@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - Tito Renz Restaurant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Questrial&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            width: 100%;
+            height: 180px;
+            background: url('your-background-image.jpg') center/cover no-repeat;
+            background-color: #d4d4d4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* Ensure image fills the hero section */
+        .hero-section .logo {
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+
+        /* Centered overlay logo (replace src in HTML) */
+        .hero-section .overlay-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+            max-width: 90%;
+            height: auto;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Secondary logo below main logo */
+        .hero-section .overlay-logo-secondary {
+            position: absolute;
+            top: calc(50% + 50px);
+            left: 50%;
+            transform: translateX(-30%);
+            width: 230px;
+            max-width: 60%;
+            height: auto;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Ampersand text beside the T in restaurant */
+        .hero-section .ampersand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(1150%, 90%);
+            font-family: 'Questrial', Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #b87422;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            font-family: 'Poppins';
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            font-family: 'Poppins';
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2d5016;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            border: 1px solid #d4d4d4;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #4a7c2c;
+            background-color: #fff;
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+        }
+
+        .toggle-password svg {
+            width: 100%;
+            height: 100%;
+            fill: #666;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 23px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 700;
+            color: white;
+            background-color: #527448;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background-color: #47663e;
+        }
+
+        .signin-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .signin-section p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .signin-btn {
+            display: inline-block;
+            padding: 12px 60px;
+            font-size: 16px;
+            color: #4a7c2c;
+            background-color: white;
+            border: 2px solid #4a7c2c;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .signin-btn:hover {
+            background-color: #4a7c2c;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 150px;
+            }
+
+            .logo {
+                max-width: 250px;
+            }
+
+            .hero-section .overlay-logo {
+                width: 280px;
+            }
+
+            .hero-section .overlay-logo-secondary {
+                top: calc(50% + 40px);
+                transform: translateX(-30%);
+                width: 200px;
+            }
+
+            .hero-section .ampersand {
+                font-size: 20px;
+                transform: translate(1150%, 90%);
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .form-container {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+    <link rel="icon" href="../Image/logo.png">
+</head>
+<body>
+    <div class="hero-section">
+        <!-- Background image (dimmed) -->
+        <img src="../Image/bg_reg-pg.jpg" alt="Tito Renz Restaurant & Catering Services" class="logo">
+
+        <!-- Center overlay logo: replace src with your logo path -->
+        <img src="../Image/logo.png" alt="Tito Renz Logo" class="overlay-logo">
+        <span class="ampersand">&</span>
+        <img src="../Image/logo1.png" alt="Tito Renz Catering Services" class="overlay-logo-secondary">
+    </div>
+
+    <div class="form-container">
+        <h1>Create Account</h1>
+        <p class="subtitle">Join Tito Renz Restaurant family</p>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Choose a username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                    <span class="toggle-password" onclick="togglePassword('password')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                    <span class="toggle-password" onclick="togglePassword('confirm-password')">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Account</button>
+        </form>
+
+        <div class="signin-section">
+            <p>Already have an account?</p>
+            <a href="#" class="signin-btn">Sign In</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (field.type === 'password') {
+                field.type = 'text';
+            } else {
+                field.type = 'password';
+            }
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Add your form submission logic here
+            alert('Account created successfully!');
+        });
+    </script>
+</body>
+</html>

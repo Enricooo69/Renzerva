@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renzerva — Catering</title>
+    <link rel="icon" href="../Image/logo.png">
+    <style>
+      html, body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #ffffff; color: #191919; }
+
+      /* Top navigation */
+      .nav { background: #16610E; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 12px 28px; position: relative; }
+      .brand { font-weight: 700; font-size: 20px; }
+      .nav-center { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 34px; align-items: center; }
+      .nav-link { color: #fff; text-decoration: none; font-weight: 700; letter-spacing: 0.3px; }
+      .nav-link.active { position: relative; }
+      .nav-link.active::after { content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: -12px; width: 52px; height: 4px; background: #ffffff; border-radius: 4px; }
+      .user { display: flex; align-items: center; gap: 10px; }
+      .avatar { width: 28px; height: 28px; background: #fff; color: #16610E; border-radius: 999px; display: grid; place-items: center; font-weight: 800; }
+
+      /* Page layout */
+      .wrapper { max-width: 1200px; margin: 0 auto; padding: 26px 36px; }
+      /* Scroll main content below the header */
+      .main-scroll { max-height: calc(100vh - 70px); overflow-y: auto; overflow-x: hidden; }
+      .main-scroll::-webkit-scrollbar { width: 8px; }
+      .main-scroll::-webkit-scrollbar-thumb { background: #d8d8d8; border-radius: 8px; }
+
+      /* Centered restaurant logo (combined like in other pages) */
+      .hero { display: grid; place-items: center; padding: 20px 0 12px; }
+      .logo-combo { position: relative; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+      .main-logo { width: 240px; height: auto; max-width: 100%; }
+      .secondary-logo { width: 170px; height: auto; transform: translate(22%, -50%); max-width: 100%; }
+      .ampersand { font-family: 'Questrial'; font-size: 20px; font-weight: 800; color: #b87422; position: absolute; top: 50%; left: 50%; transform: translate(650%, 10%); z-index: 10; }
+
+      /* Cards grid */
+      .grid { background: #f3f3f3; border-radius: 18px; padding: 22px; }
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+      .card { background: #ffffff; border: 1px solid #ececec; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+      .card h3 { margin: 14px 14px 8px; text-align: center; }
+      .card p { margin: 8px 14px 16px; text-align: center; color: #555; font-size: 14px; }
+      .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+
+      @media (max-width: 980px) { .cards { grid-template-columns: 1fr; } .card img { height: 220px; } }
+
+      /* Options section (image + list) */
+      .options { background: #f7f7f7; border-radius: 18px; padding: 24px; margin-top: 22px; }
+      .opt-grid { display: grid; grid-template-columns: 360px 1fr; gap: 24px; align-items: start; }
+      .opt-left img { width: 100%; height: 260px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e5e5; }
+      .opt-list { background: #fff; border: 1px solid #ececec; border-radius: 8px; overflow: hidden; }
+      .opt-row { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 14px 16px; border-bottom: 1px solid #efefef; }
+      .opt-row:last-child { border-bottom: 0; }
+      .opt-row span { font-weight: 600; color: #333; font-size: 14px; }
+      .opt-row .plus { width: 24px; height: 24px; border-radius: 999px; display: grid; place-items: center; background: #f3f3f3; color: #111; font-weight: 800; }
+      .actions { display: flex; gap: 16px; justify-content: center; margin-top: 22px; }
+      .btn { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 10px 14px; font-weight: 700; box-shadow: 0 2px 0 rgba(0,0,0,0.15); cursor: pointer; }
+
+      /* Modal for menu & rates */
+      .modal-backdrop { display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; }
+      .modal { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: transparent; border-radius: 10px; width: auto; max-width: 96vw; max-height: 92vh; overflow: visible; box-shadow: none; display: flex; flex-direction: column; align-items: center; }
+      .modal-header { position: absolute; right: 8px; top: 8px; background: transparent; padding: 0; }
+      .modal-close { background:#ffffff; color:#16610E; border:none; width:32px; height:32px; border-radius:999px; cursor:pointer; font-weight:800; line-height:1; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+      .modal-body { position: relative; background: transparent; display:grid; place-items:center; }
+      .modal-body img { display:block; max-width: 96vw; max-height: 92vh; width: auto; height: auto; object-fit: contain; background: transparent; }
+      .modal-next { position: absolute; right: 8px; bottom: 8px; width: 36px; height: 36px; border-radius: 999px; border: none; background: #ffffff; color: #16610E; box-shadow: 0 2px 8px rgba(0,0,0,0.25); cursor: pointer; font-weight: 900; display: grid; place-items: center; }
+      .modal-next.left { right: auto; left: 8px; }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="brand">Renzerva</div>
+      <div class="nav-center">
+        <a class="nav-link" href="#">HOME</a>
+        <a class="nav-link" href="Order_page.html">ORDER</a>
+        <a class="nav-link active" href="#">CATERING</a>
+        <a class="nav-link" href="Login.html#contact" onclick="event.preventDefault()">CONTACT</a>
+      </div>
+      <div class="user">
+        <div class="avatar">👤</div>
+        <div>Maria Santos</div>
+      </div>
+    </nav>
+
+    <div class="main-scroll">
+      <div class="wrapper">
+        <div class="hero">
+          <div class="logo-combo">
+            <img src="../Image/logo.png" alt="Tito Renz Logo" class="main-logo" />
+            <span class="ampersand">&</span>
+            <img src="../Image/logo1.png" alt="Tito Renz Catering Services" class="secondary-logo" />
+          </div>
+        </div>
+
+        <section class="grid">
+          <div class="cards">
+            <article class="card">
+              <img src="../Image/Birthday.jpg" alt="Birthdays" />
+              <h3>Birthdays</h3>
+              <p>Make every birthday extra special. Fun themes, tasty food, and zero stress.</p>
+            </article>
+            <article class="card">
+              <img src="../Image/Wedding.jpg" alt="Weddings" />
+              <h3>Weddings</h3>
+              <p>Say “I do” to elegant catering. Perfect food and setup for your perfect day.</p>
+            </article>
+            <article class="card">
+              <img src="../Image/Meetings.jpg" alt="Meetings" />
+              <h3>Meetings</h3>
+              <p>Keep ideas flowing with good food and smooth service. Hassle‑free catering for any meeting.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Options section like the screenshot -->
+        <section class="options">
+          <div class="opt-grid">
+            <div class="opt-left">
+              <img src="../Image/Platter.jpg" alt="Catering trays" />
+            </div>
+            <div class="opt-right">
+              <div class="opt-list">
+                <div class="opt-row"><span>Choose Catering Packages</span><div class="plus">+</div></div>
+                <div class="opt-row"><span>Build Your Own Menu</span><div class="plus">+</div></div>
+                <div class="opt-row"><span>Appetizers and Side Dishes</span><div class="plus">+</div></div>
+                <div class="opt-row"><span>Desserts and Refreshments</span><div class="plus">+</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn">Submit Catering Form</button>
+            <button class="btn" onclick="openMenuModal()">Catering Menu & Rates</button>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- Modal: Catering Menu & Rates -->
+    <div id="menuModal" class="modal-backdrop" onclick="closeMenuModal(event)">
+      <div class="modal" role="dialog" aria-modal="true" aria-label="Catering Menu & Rates">
+        <div class="modal-header">
+          <button class="modal-close" aria-label="Close" onclick="closeMenuModal(event)">×</button>
+        </div>
+        <div class="modal-body">
+          <img src="" alt="Catering menu and rates" id="menuRatesImg" />
+          <button class="modal-next" id="menuNextBtn" aria-label="Next">›</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var cateringImages = [
+        '../Image/Catering_rates1.jpg',
+        '../Image/Catering_rates2.jpg'
+      ];
+      var cateringIndex = 0;
+
+      function openMenuModal() {
+        // set your image path here later
+        var img = document.getElementById('menuRatesImg');
+        cateringIndex = 0;
+        img.setAttribute('src', cateringImages[cateringIndex]);
+        document.getElementById('menuModal').style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        updateNextBtn();
+      }
+      function closeMenuModal(e) {
+        // close when clicking backdrop or close button
+        if (e && e.target && (e.target.id === 'menuModal' || e.target.classList.contains('modal-close'))) {
+          document.getElementById('menuModal').style.display = 'none';
+          document.body.style.overflow = '';
+        }
+      }
+      document.getElementById('menuNextBtn').addEventListener('click', function(){
+        var img = document.getElementById('menuRatesImg');
+        cateringIndex = (cateringIndex + 1) % cateringImages.length;
+        img.setAttribute('src', cateringImages[cateringIndex]);
+        updateNextBtn();
+      });
+
+      function updateNextBtn() {
+        var btn = document.getElementById('menuNextBtn');
+        if (cateringIndex === cateringImages.length - 1) {
+          btn.classList.add('left');
+          btn.textContent = '‹';
+          btn.setAttribute('aria-label', 'Next (wrap to first)');
+        } else {
+          btn.classList.remove('left');
+          btn.textContent = '›';
+          btn.setAttribute('aria-label', 'Next');
+        }
+      }
+      // Esc to close
+      document.addEventListener('keydown', function(ev){ if (ev.key === 'Escape') { document.getElementById('menuModal').style.display = 'none'; document.body.style.overflow = ''; } });
+    </script>
+  </body>
+  </html>
+
+

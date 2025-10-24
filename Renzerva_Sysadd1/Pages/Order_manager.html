@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tito Renz - Order Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Questrial&display=swap" rel="stylesheet">
+    <link rel="icon" href="../Image/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-section {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            position: relative;
+        }
+
+        .main-logo {
+            width: 200px;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .secondary-logo {
+            width: 140px;
+            height: auto;
+            transform: translate(22%, -50%);
+            max-width: 100%;
+        }
+
+        .ampersand {
+            font-family: 'Questrial', Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            color: #b87422;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(860%, 0%);
+            z-index: 10;
+        }
+
+        .navigation {
+            flex: 1;
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            gap: 12px;
+        }
+
+        .nav-item:hover { background-color: #f8f8f8; }
+        .nav-item.active {
+            background-color: #e8f5e8;
+            border-right: 3px solid #228B22;
+        }
+
+        .nav-icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+        .nav-text { font-size: 14px; color: #333; font-weight: 500; }
+
+        .logout-btn {
+            margin: 20px;
+            padding: 12px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .logout-btn:hover { background-color: #c82333; }
+
+        /* Main */
+        .main-content { flex: 1; display: flex; flex-direction: column; }
+
+        .header {
+            background-color: #16610E;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-title { font-size: 24px; font-weight: 600; }
+
+        .content { padding: 30px; flex: 1; overflow-y: auto; max-height: calc(100vh - 80px); }
+        .overview { font-size: 26px; font-weight: 700; color: #333; margin-bottom: 20px; }
+
+        /* Orders Card */
+        .orders-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .orders-card__header {
+            background-color: #16610E;
+            color: #fff;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .orders-card__title { font-size: 18px; font-weight: 700; }
+        .orders-card__actions { display: flex; gap: 12px; align-items: center; }
+        .orders-search {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 8px;
+            width: 260px;
+            outline: none;
+        }
+        .orders-search::placeholder { color: #e6f0e6; }
+        .save-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            color: #2d5a2d;
+            border: 1px solid #dbe6db;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Table */
+        .orders-table { width: 100%; border-collapse: collapse; }
+        .orders-table thead th {
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 13px;
+            color: #333;
+            background: #f7f9f7;
+            border-bottom: 1px solid #e7eee7;
+        }
+        .orders-row { background: #fff; }
+        .orders-row + .orders-row { border-top: 1px solid #eaeaea; }
+        .orders-cell { padding: 18px 16px; vertical-align: top; font-size: 14px; color: #333; }
+        .muted { color: #6b7280; font-size: 12px; }
+
+        .peso { color: #9aa3af; margin-right: 6px; }
+        .fee-input { width: 70px; padding: 4px 6px; border: 1px solid #d1d5db; border-radius: 6px; }
+
+        .status { padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; display: inline-block; }
+        .status--pending { background: #fdebd1; color: #a16207; }
+        .status--confirmed { background: #dcfce7; color: #166534; }
+        .status--completed { background: #dbeafe; color: #1e40af; }
+
+        .row-divider { height: 1px; background: #eee; margin: 0 0 0 0; }
+
+        /* Actions */
+        .actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+        .btn { border: none; padding: 8px 14px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; width: 110px; text-align: center; box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+        .btn--confirm { background: #22c55e; color: #073b16; }
+        .btn--complete { background: #2563eb; color: #eef2ff; }
+        .btn--details { background: #fb923c; color: #4a2d0a; }
+        .btn--cancel { background: #ef4444; color: #fff; }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; }
+            .orders-card__header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .orders-search { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo-section">
+            <div class="logo">
+                <img src="../Image/logo.png" alt="Tito Renz Logo" class="main-logo">
+                <span class="ampersand">&</span>
+                <img src="../Image/logo1.png" alt="Tito Renz Catering Services" class="secondary-logo">
+            </div>
+        </div>
+
+        <div class="navigation">
+            <div class="nav-item" onclick="navigate('Dash_manager.html')">
+                <div class="nav-icon">📊</div>
+                <div class="nav-text">Dashboard</div>
+            </div>
+            <div class="nav-item active" onclick="navigate('Order_manager.html')">
+                <div class="nav-icon">🍽️</div>
+                <div class="nav-text">Orders</div>
+            </div>
+            <div class="nav-item" onclick="navigate('Booking_manager.html')">
+                <div class="nav-icon">📅</div>
+                <div class="nav-text">Bookings</div>
+            </div>
+        </div>
+
+        <button class="logout-btn" onclick="openLogoutModal()">Log Out</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="header-title">Manager Dashboard</div>
+            <button class="save-btn" onclick="saveChanges()">🖫 Save Changes</button>
+        </div>
+
+        <div class="content">
+            <div class="overview">Order Management</div>
+            <div class="orders-card">
+                <div class="orders-card__header">
+                    <div class="orders-card__title">All Orders</div>
+                    <div class="orders-card__actions">
+                        <input class="orders-search" type="text" placeholder="Search orders..." oninput="filterOrders(this.value)">
+                    </div>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="orders-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Customer</th>
+                                <th>Address</th>
+                                <th>Items</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Delivery Fee</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="orders-row">
+                                <td class="orders-cell">
+                                    <div>Maria<br> Santos</div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>123 Maligaya st., bigte<br><span class="muted">SJDM</span></div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>Adobo,<br>Rice,<br>Lumpia</div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>June<br>8,<br>2025</div>
+                                </td>
+                                <td class="orders-cell">₱850</td>
+                                <td class="orders-cell"><span class="peso">₱</span><input class="fee-input" type="number" value="" placeholder="--"></td>
+                                <td class="orders-cell"><span class="status status--pending">Pending</span></td>
+                                <td class="orders-cell">
+                                    <div class="actions">
+                                        <button class="btn btn--confirm" onclick="confirmOrder(this)">Confirm</button>
+                                        <button class="btn btn--details" onclick="viewDetails(this)">Details</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="orders-row">
+                                <td class="orders-cell">
+                                    <div>Juan Dela<br>Cruz</div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>345 Tunkong Mangga,<br><span class="muted">SJDM</span></div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>Sinigang,<br>Rice,<br>Halo-halo</div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>June<br>8,<br>2025</div>
+                                </td>
+                                <td class="orders-cell">₱1,200</td>
+                                <td class="orders-cell"><span class="peso">₱</span><input class="fee-input" type="number" value="" placeholder="--"></td>
+                                <td class="orders-cell"><span class="status status--confirmed">Confirmed</span></td>
+                                <td class="orders-cell">
+                                    <div class="actions">
+                                        <button class="btn btn--complete" onclick="completeOrder(this)">Complete</button>
+                                        <button class="btn btn--details" onclick="viewDetails(this)">Details</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="orders-row">
+                                <td class="orders-cell">
+                                    <div>Anna<br>Garcia</div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>786 Tugatog,<br><span class="muted">SJDM</span></div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>Lechon,<br>Rice,<br>Buko Pie</div>
+                                </td>
+                                <td class="orders-cell">
+                                    <div>June<br>7,<br>2025</div>
+                                </td>
+                                <td class="orders-cell">₱2,500</td>
+                                <td class="orders-cell"><span class="peso">₱</span><input class="fee-input" type="number" value="100"></td>
+                                <td class="orders-cell"><span class="status status--completed">Completed</span></td>
+                                <td class="orders-cell">
+                                    <div class="actions">
+                                        <button class="btn btn--details" onclick="viewDetails(this)">Details</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal (enhanced) -->
+    <div id="logoutModal" class="modal-backdrop">
+        <div class="modal-dialog">
+            <div class="modal-icon">⚠️</div>
+            <div class="modal-title">Confirm Logout</div>
+            <div class="modal-text">Are you sure you want to logout? Make sure to save any unsaved changes before logging out.</div>
+            <div class="modal-actions">
+                <button class="btn btn-gray" onclick="closeLogoutModal()">Cancel</button>
+                <button class="btn btn-green" onclick="saveAndLogout()">Save & Logout</button>
+                <button class="btn btn-red" onclick="confirmLogout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigate(path) { window.location.href = path; }
+        function openLogoutModal() { document.getElementById('logoutModal').style.display = 'block'; }
+        function closeLogoutModal() { document.getElementById('logoutModal').style.display = 'none'; }
+        function confirmLogout() { alert('Logging out...'); /* window.location.href = 'Login_manager.html'; */ }
+        function saveAndLogout() { if (typeof saveChanges === 'function') { try { saveChanges(); } catch(_) {} } confirmLogout(); }
+
+        function saveChanges() {
+            alert('Changes saved');
+        }
+
+        function filterOrders(query) {
+            const rows = document.querySelectorAll('#ordersTable tbody tr');
+            const q = query.toLowerCase();
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(q) ? '' : 'none';
+            });
+        }
+
+        // Actions logic (basic demo)
+        function getStatusBadge(cell) {
+            return cell.querySelector('.status');
+        }
+
+        function confirmOrder(btn) {
+            const row = btn.closest('tr');
+            const statusCell = row.querySelectorAll('.orders-cell')[6];
+            const badge = getStatusBadge(statusCell);
+            badge.className = 'status status--confirmed';
+            badge.textContent = 'Confirmed';
+        }
+
+        function completeOrder(btn) {
+            const row = btn.closest('tr');
+            const statusCell = row.querySelectorAll('.orders-cell')[6];
+            const badge = getStatusBadge(statusCell);
+            badge.className = 'status status--completed';
+            badge.textContent = 'Completed';
+        }
+
+        function cancelOrder(btn) {
+            const row = btn.closest('tr');
+            const statusCell = row.querySelectorAll('.orders-cell')[6];
+            const badge = getStatusBadge(statusCell);
+            badge.className = 'status status--pending';
+            badge.textContent = 'Pending';
+        }
+
+        function viewDetails(btn) {
+            const rowText = btn.closest('tr').innerText.trim().replace(/\s+/g, ' ');
+            alert('Order details:\n' + rowText);
+        }
+    </script>
+</body>
+</html>
+
